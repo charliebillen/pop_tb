@@ -8,4 +8,6 @@
     }
 
     credits[l].value = l;
+
+    window.scrollTo(0, document.body.scrollHeight);
 })();

@@ -1,7 +1,7 @@
 (function () {
     var debits = document.querySelectorAll('input[name*=debit]'),
         credits = document.querySelectorAll('input[name*=credit]'),
-        evnt = new Event('change'),
+        event = new Event('change', { 'bubbles': true }),
         l = debits.length - 1,
         lastCredit = credits[l],
         total = 0,
@@ -14,7 +14,7 @@
     }
 
     lastCredit.value = total;
-    lastCredit.dispatchEvent(evnt);
+    lastCredit.dispatchEvent(event);
 
     window.scrollTo(0, document.body.scrollHeight);
 })();

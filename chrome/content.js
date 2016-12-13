@@ -14,7 +14,7 @@ function populateTrialBalance(params) {
       minValue = params.minValue,
       maxValue = params.maxValue;
 
-  var range = maxValue - minValue,
+  var range = maxValue - minValue + 1,
       postTo = 'debit',
       account_name,
       isBF = false,
@@ -35,7 +35,7 @@ function populateTrialBalance(params) {
     }
 
     postTo = creditOrDebit(postingType);
-    value = Math.floor(Math.random() * range + minValue);
+    value = Math.floor(Math.random() * range) + parseInt(minValue);
     inputField = inputRows[i].querySelector('input[name*=' + postTo + ']');
     (postTo == 'debit') ? total += value : total -= value;
     inputField.value = value;

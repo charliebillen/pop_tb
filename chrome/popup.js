@@ -1,4 +1,5 @@
 window.onload = function () {
+  var form = document.getElementById("form");
   var btnPopTB = document.getElementById("btn_pop_tb_run");
   var btnClearTB = document.getElementById("btn_clear_tb");
 
@@ -21,5 +22,44 @@ window.onload = function () {
       chrome.tabs.sendMessage(tab.id, {action: "clearTB"}, function () {
       });
     });
-  })
+  });
+
+  form.addEventListener("blur", function () {
+    var errorPanel = document.getElementById("errorPanel");
+    var minValueInput = document.querySelector('input[name="minValue"]');
+    var minValue = parseInt(minValueInput.value);
+    var maxValueInput = document.querySelector('input[name="maxValue"]');
+    var maxValue = parseInt(maxValueInput.value);
+    var btnPopTB = document.getElementById("btn_pop_tb_run");
+    var msgArray = [];
+
+    // Validate the form
+    if (maxValue < minValue) {
+      msgArray.push("Maximum value cannot be less than the minimum value.");
+    }
+
+    if (minValue > parseInt(minValueInput.max)) {
+      msgArray.push("Minimum value cannot be greater than " + minValueInput.max + ".");
+    }
+
+    if (maxValue > parseInt(maxValueInput.max)) {
+      msgArray.push("Maximum value cannot be greater than " + maxValueInput.max + ".");
+    }
+
+    btnPopTB.disabled = msgArray.length > 0;
+    errorPanel.innerHTML = bullet(msgArray);
+    errorPanel.style.display = (msgArray.length > 0) ? 'block' : 'none';
+  }, true);
+
+  function bullet(msgArray) {
+    if (msgArray.length == 0) {
+      return '';
+    }
+
+    var i, msgString = "<ul>";
+    for (i = 0; i < msgArray.length; i++) {
+      msgString += "<li>" + msgArray[i] + "</li>";
+    }
+    return msgString + "</ul>";
+  }
 };

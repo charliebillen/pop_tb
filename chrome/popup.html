@@ -1,0 +1,35 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "page_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+<head>
+  <title>Pop TB's Popup</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <script type="text/javascript" src="popup.js"></script>
+</head>
+
+<body>
+<div class="circular_icon"></div>
+<h2 class="title">Populate Trial Balance</h2>
+
+<form>
+  <label><input type="radio" name="postingType" value="both" checked> Credits and debits</label><br>
+  <label><input type="radio" name="postingType" value="creditOnly"> Credits only (and a debit balance)</label><br>
+  <label><input type="radio" name="postingType" value="debitOnly"> Debits only (and a credit balance)</label><br>
+  <br>
+  <label><input type="checkbox" name="includeBF" value="includeBF"> Include brought forward accounts?</label><br>
+  <br>
+  <label>Minimum value: <input type="number" name="minValue" min="0" max="9999999" value="1"></label><br>
+  <label>Maximum value: <input type="number" name="maxValue" min="1" max="9999999" value="9999"></label><br>
+</form>
+
+<div class="buttonPanel">
+  <button class="btn" id="btn_clear_tb">Clear</button>
+  <button class="btn" id="btn_pop_tb_run">GO!</button>
+</div>
+</body>
+</html>
+

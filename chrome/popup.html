@@ -15,7 +15,7 @@
 <div class="circular_icon"></div>
 <h2 class="title">Populate Trial Balance</h2>
 
-<form>
+<form id="form">
   <label><input type="radio" name="postingType" value="both" checked> Credits and debits</label><br>
   <label><input type="radio" name="postingType" value="creditOnly"> Credits only (and a debit balance)</label><br>
   <label><input type="radio" name="postingType" value="debitOnly"> Debits only (and a credit balance)</label><br>
@@ -26,9 +26,11 @@
   <label>Maximum value: <input type="number" name="maxValue" min="1" max="9999999" value="9999"></label><br>
 </form>
 
+<div id="errorPanel" class="error"></div>
+
 <div class="buttonPanel">
-  <button class="btn" id="btn_clear_tb">Clear</button>
-  <button class="btn" id="btn_pop_tb_run">GO!</button>
+  <button class="btn" id="btn_clear_tb" title="Remove all postings from the TB">Clear</button>
+  <button class="btn" id="btn_pop_tb_run" title="Populate the TB using the above settings">GO!</button>
 </div>
 </body>
 </html>

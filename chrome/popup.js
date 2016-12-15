@@ -24,7 +24,12 @@ window.onload = function () {
     });
   });
 
-  form.addEventListener("blur", function () {
+  form.addEventListener("blur", function (event) {
+    if (event.target.type == 'number') {
+      var numericValue = parseInt(event.target.value);
+      event.target.value = (isNaN(numericValue)) ? event.target.defaultValue : numericValue;
+    }
+
     var errorPanel = document.getElementById("errorPanel");
     var minValueInput = document.querySelector('input[name="minValue"]');
     var minValue = parseInt(minValueInput.value);
@@ -42,8 +47,16 @@ window.onload = function () {
       msgArray.push("Minimum value cannot be greater than " + minValueInput.max + ".");
     }
 
+    if (minValue < parseInt(minValueInput.min)) {
+      msgArray.push("Minimum value cannot be less than " + minValueInput.min + ".");
+    }
+
     if (maxValue > parseInt(maxValueInput.max)) {
       msgArray.push("Maximum value cannot be greater than " + maxValueInput.max + ".");
+    }
+
+    if (maxValue < parseInt(maxValueInput.min)) {
+      msgArray.push("Maximum value cannot be less than " + maxValueInput.min + ".");
     }
 
     btnPopTB.disabled = msgArray.length > 0;

@@ -5,6 +5,7 @@
  value "popup.html".
  -->
 <html>
+
 <head>
   <title>Pop TB's Popup</title>
   <link rel="stylesheet" type="text/css" href="popup.css">
@@ -15,23 +16,64 @@
 <div class="circular_icon"></div>
 <h2 class="title">Populate Trial Balance</h2>
 
-<form id="form">
-  <label><input type="radio" name="postingType" value="both" checked> Credits and debits</label><br>
-  <label><input type="radio" name="postingType" value="creditOnly"> Credits only (and a debit balance)</label><br>
-  <label><input type="radio" name="postingType" value="debitOnly"> Debits only (and a credit balance)</label><br>
-  <br>
-  <label><input type="checkbox" name="includeBF" value="includeBF"> Include brought forward accounts?</label><br>
-  <br>
-  <label>Minimum value: <input type="number" name="minValue" min="0" max="9999999" value="1"></label><br>
-  <label>Maximum value: <input type="number" name="maxValue" min="1" max="9999999" value="9999"></label><br>
-</form>
+<div class="container">
+  <form id="form">
+    <div class="ui-control">
+      <input type="radio" id="radCrAndDr" name="postingType" value="both" checked>
+      <label for="radCrAndDr">Credits and debits</label>
+    </div>
+    <div class="ui-control">
+      <input type="radio" id="radCrOnly" name="postingType" value="creditOnly">
+      <label for="radCrOnly">Credits only (and a debit balance)</label>
+    </div>
+    <div class="ui-control">
+      <input type="radio" id="radDrOnly" name="postingType" value="debitOnly">
+      <label for="radDrOnly">Debits only (and a credit balance)</label>
+    </div>
 
-<div id="errorPanel" class="error"></div>
+    <hr>
 
-<div class="buttonPanel">
-  <button class="btn" id="btn_clear_tb" title="Remove all postings from the TB">Clear</button>
-  <button class="btn" id="btn_pop_tb_run" title="Populate the TB using the above settings">GO!</button>
+    <div class="ui-control">
+      <input type="checkbox" id="chkIncludeBF" name="includeBF" value="includeBF">
+      <label for="chkIncludeBF">Include brought forward accounts?</label>
+    </div>
+
+    <hr>
+
+    <div class="ui-control">
+      <label for="numMinValue" class="fixedWidthSmall">Minimum amount:</label>
+      <input type="number" id="numMinValue" name="minValue" min="0" max="9999999" value="1">
+    </div>
+    <div class="ui-control">
+      <label for="numMaxValue" class="fixedWidthSmall">Maximum amount:</label>
+      <input type="number" id="numMaxValue" name="maxValue" min="1" max="9999999" value="9999">
+    </div>
+
+    <hr>
+
+    <div class="ui-control">
+      <label for="rngDensity">Density:</label>
+      <input type="range" id="rngDensity" name="density" min="1" max="100" value="100" list="tickMarks">
+      <span id="rngDensityOutput">100%</span>
+      <datalist id="tickMarks">
+        <option value="1" label="1%">
+        <option value="25">
+        <option value="50" label="50%">
+        <option value="75">
+        <option value="100" label="100%">
+      </datalist>
+      <div id="densityFriendlyOutput"></div>
+    </div>
+  </form>
+
+  <div id="errorPanel" class="error"></div>
+
+  <div class="buttonPanel">
+    <button class="btn" id="btn_clear_tb" title="Remove all postings from the TB">Clear TB</button>
+    <button class="btn primary" id="btn_pop_tb_run" title="Populate the TB using the above settings">Populate TB
+    </button>
+  </div>
 </div>
 </body>
-</html>
 
+</html>

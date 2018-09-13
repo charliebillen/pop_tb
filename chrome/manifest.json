@@ -1,10 +1,14 @@
 {
-  "manifest_version": 4,
+  "manifest_version": 2,
 
   "name": "Pop TB",
   "description": "Fully populate an Initial or Comparative Trial Balance in Final Accounts Online.",
-  "version": "0.4",
-  "author": "Charlie Billen",
+  "version": "0.5",
+  "author": "Charlie Billen, Mark Kirkham",
+
+  "icons": { "16": "hypnotoad16.png",
+    "48": "hypnotoad48.png",
+    "128": "hypnotoad128.png" },
 
   "page_action": {
     "default_title": "Fully populate a TB",
